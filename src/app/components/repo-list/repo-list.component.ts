@@ -4,7 +4,7 @@ import { GithubService } from '../../services/github.service';
 @Component({
   selector: 'app-repo-list',
   templateUrl: './repo-list.component.html',
-  styleUrls: ['./repo-list.component.css']
+  styleUrls: ['./repo-list.component.scss']
 })
 export class RepoListComponent implements OnInit {
   repos: any[] = [];
