@@ -37,7 +37,7 @@ describe('GithubService', () => {
     });
 
     const req = httpTestingController.expectOne(
-      `${environment.githubApiUrl}/users/testuser/repos?per_page=10&page=1`
+      `${environment.githubToken}/users/testuser/repos?per_page=10&page=1`
     );
 
     expect(req.request.method).toBe('GET');
@@ -55,7 +55,7 @@ describe('GithubService', () => {
     );
 
     const req = httpTestingController.expectOne(
-      `${environment.githubApiUrl}/users/testuser/repos?per_page=10&page=1`
+      `${environment.githubToken}/users/testuser/repos?per_page=10&page=1`
     );
 
     expect(req.request.method).toBe('GET');
@@ -74,7 +74,7 @@ describe('GithubService', () => {
       expect(userDetails).toEqual(mockUserDetails);
     });
 
-    const req = httpTestingController.expectOne(`${environment.githubApiUrl}/users/testuser`);
+    const req = httpTestingController.expectOne(`${environment.githubToken}/users/testuser`);
 
     expect(req.request.method).toBe('GET');
     req.flush(mockUserDetails);
@@ -90,7 +90,7 @@ describe('GithubService', () => {
       }
     );
 
-    const req = httpTestingController.expectOne(`${environment.githubApiUrl}/users/testuser`);
+    const req = httpTestingController.expectOne(`${environment.githubToken}/users/testuser`);
 
     expect(req.request.method).toBe('GET');
 
