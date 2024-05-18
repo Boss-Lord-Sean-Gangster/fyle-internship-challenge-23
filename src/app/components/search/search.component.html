@@ -1,0 +1,4 @@
+<div class="search-bar flex items-center justify-center gap-4 mt-4">
+  <input type="text" [(ngModel)]="searchUsername" placeholder="Enter GitHub username Ex.mojombo" class="w-64 h-12 text-center border-2 border-gray-400 text-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 rounded">
+  <button (click)="searchRepos()" class="h-12 w-24 bg-gray-400 rounded border-2 border-gray-200 cursor-pointer text-gray-200 hover:bg-gray-500 hover:text-white transition-colors duration-200">Search</button>
+</div>
