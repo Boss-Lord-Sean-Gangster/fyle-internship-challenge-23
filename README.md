@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Web App Link
 
-The link to the official web app is - https://git-repo-project.netlify.app/
+The link to the official web app is - https://repository-list-project.netlify.app/
 
 ## Development server
 
