@@ -1,0 +1,38 @@
+<app-search (searchEvent)="updateUsername($event)"></app-search>
+
+<div class="repo-toggle-button flex justify-end items-center mb-4 text-xl font-light text-center">
+  <label for="perPageSelect" class="mr-2">Repositories per page:</label>
+  <select id="perPageSelect" (change)="onPerPageChange($event)" class="ml-4 w-36 h-10 text-gray-400 border-2 border-gray-200">
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+  </select>
+</div>
+
+<div *ngIf="userDetails && userDetails.avatar_url" class="user-details flex mt-8 gap-8 bg-darkBlue p-8 items-center w-full max-w-2xl mb-12 flex-wrap rounded-md">
+  <img [src]="userDetails.avatar_url" alt="User Avatar" class="w-48 h-48 rounded-full cursor-pointer hover:scale-110 transition-transform duration-500 shadow-lg">
+  <div>
+    <h2 class="real-name text-white ">{{ userDetails.name }}</h2>
+    <p class="username text-xl text-gray-400">@{{ username }}</p>
+  </div>
+</div>
+
+<div *ngIf="repos.length" class="repo-container mb-12">
+  <h2 class="text-xl font-semibold mb-4">Repositories for {{ username }}:</h2>
+  <ul class="repo-list flex flex-wrap gap-8 justify-evenly list-none p-0">
+    <li *ngFor="let repo of repos" class="bg-darkBlue p-4 w-80 rounded-md transform hover:scale-110 transition-transform duration-500 shadow-lg">
+      <a [href]="repo.html_url" target="_blank" class="text-white text-xl no-underline">{{ repo.name }}</a>
+      <p class="description text-gray-400 mt-2">{{ repo.description }}</p>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!repos.length" class="text-center text-gray-500">
+  <p>No repositories found for {{ username }}.</p>
+</div>
+
+<div class="pagination flex justify-between items-center mt-6 text-xl">
+  <button (click)="previousPage()" [disabled]="currentPage === 1" class="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300">Previous</button>
+  <span class="text-gray-700">Page {{ currentPage }}</span>
+  <button (click)="nextPage()" class="bg-blue-500 text-white py-2 px-4 rounded">Next</button>
+</div>
