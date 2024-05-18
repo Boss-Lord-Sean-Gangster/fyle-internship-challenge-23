@@ -54,6 +54,6 @@ describe('AppComponent', () => {
     const searchComponent: SearchComponent = fixture.debugElement.children[0].componentInstance;
     searchComponent.searchEvent.emit('testuser');
 
-    expect(component.username).toBe('testuser');
+    expect(component.title).toBe('testuser');
   });
 });
