@@ -48,7 +48,7 @@ describe('RepoListComponent', () => {
     spyOn(githubService, 'getUserDetails').and.returnValue(of(mockUserDetails));
 
     component.username = 'testuser';
-    component.searchRepos();
+    component.fetchRepos();
 
     expect(githubService.getRepos).toHaveBeenCalledWith('testuser', 10, 1);
     expect(githubService.getUserDetails).toHaveBeenCalledWith('testuser');
@@ -62,7 +62,7 @@ describe('RepoListComponent', () => {
     spyOn(console, 'error');
 
     component.username = 'testuser';
-    component.searchRepos();
+    component.fetchRepos();
 
     expect(githubService.getRepos).toHaveBeenCalledWith('testuser', 10, 1);
     expect(console.error).toHaveBeenCalledWith('error');
