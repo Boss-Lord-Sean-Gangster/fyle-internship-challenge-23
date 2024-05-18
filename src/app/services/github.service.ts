@@ -1,32 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GithubService {
-
-  private baseUrl: string = 'https://api.github.com/users';
-  private token: string = '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';  // Replace with your actual token
+  private apiUrl = 'https://api.github.com';
+  private token = environment.githubToken;
 
   constructor(private http: HttpClient) { }
 
-  private createAuthorizationHeader(): HttpHeaders {
-    return new HttpHeaders({
-      'Authorization': `token ${this.token}`
+  getUserRepos(username: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
     });
+    return this.http.get(`${this.apiUrl}/users/${username}/repos`, { headers });
   }
 
-  getRepos(username: string, perPage: number = 20, page: number = 1): Observable<any> {
-    const url = `${this.baseUrl}/${username}/repos?per_page=${perPage}&page=${page}`;
-    const headers = this.createAuthorizationHeader();
-    return this.http.get<any>(url, { headers });
+  getRepoDetails(username: string, repo: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get(`${this.apiUrl}/repos/${username}/${repo}`, { headers });
+  }
+
+  // New methods based on the errors
+  getRepos(username: string, perPage: number, page: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get(`${this.apiUrl}/users/${username}/repos?per_page=${perPage}&page=${page}`, { headers });
   }
 
   getUserDetails(username: string): Observable<any> {
-    const url = `${this.baseUrl}/${username}`;
-    const headers = this.createAuthorizationHeader();
-    return this.http.get<any>(url, { headers });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.get(`${this.apiUrl}/users/${username}`, { headers });
   }
 }
